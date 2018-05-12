@@ -32,14 +32,6 @@ class TuiCoolItem(scrapy.Item):
     tip = scrapy.Field()
     pass
 
-class TaoBaoMMItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    href = scrapy.Field()
-    title = scrapy.Field()
-    img = scrapy.Field()
-    tip = scrapy.Field()
-    pass
 
 class EventItem(scrapy.Item):
     # define the fields for your item here like:

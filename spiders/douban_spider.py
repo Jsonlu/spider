@@ -26,11 +26,3 @@ class DoubanSpider(scrapy.Spider):
             movie['pic_url'] = movie_item.xpath('ul/li[@class="poster"]/a/img/@src').extract_first()
             yield movie
             pass
-        '''
-        ##下面的代码应该是个分页的，但是目标网页没有分页的需要！！！！！
-        nextPage=response.xpath('//span[@class="next"]/a/@href')
-        if nextPage:
-            url=response.urljoin(nextPage[0].extract())
-            yield  scrapy.Request(url,self.parse)
-        pass
-        '''

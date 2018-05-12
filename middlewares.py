@@ -116,8 +116,10 @@ class RequestProxyMiddleware(object):
     def from_crawler(cls,crawler):
         return cls(crawler.settings.getlist('PROXY_IP_POOL'))
 
-    #def process_request(self, request, spider):
-        #request.meta['proxy'] = random.choice(self.ips)
+    def process_request(self, request, spider):
+        if len(self.ips)>0:
+            request.meta['proxy'] = random.choice(self.ips)
+        pass
 
 
 '''

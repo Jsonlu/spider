@@ -30,7 +30,7 @@ class TuicoolSpider(scrapy.Spider):
             movie['tip'] = movie_item.xpath('normalize-space(div[@class="aricle_item_info"]//div[@class="tip"]/span/text())').extract()
             yield movie
             pass
-        ##下面的代码应该是个分页的，但是目标网页没有分页的需要！！！！！
+
         nextPage=response.xpath('//li[@class="next"]/a/@href').extract_first()
         if nextPage:
             url = response.urljoin(nextPage)

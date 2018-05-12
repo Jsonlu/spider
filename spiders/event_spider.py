@@ -23,8 +23,7 @@ class EventSpider(scrapy.Spider):
             movie['location'] = movie_item.xpath('div[@class="info"]/ul[@class="event-meta"]/li/@title').extract_first()
             yield movie
             pass
-
-        ##下面的代码应该是个分页的，但是目标网页没有分页的需要！！！！！
+            
         nextPage=response.xpath('//span[@class="next"]/a/@href').extract_first()
         if nextPage:
             url=response.urljoin(nextPage)
