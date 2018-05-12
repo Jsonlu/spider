@@ -27,7 +27,7 @@ class TuicoolSpider(scrapy.Spider):
             movie['href'] = movie_item.xpath('div[@class="aricle_item_info"]/div[@class="title"]/a/@href').extract_first()
             movie['title'] = movie_item.xpath('div[@class="aricle_item_info"]/div[@class="title"]/a/@title').extract_first()
             movie['img'] = movie_item.xpath('div[@class="article_thumb_image"]/img/@src').extract_first()
-            #movie['tip'] = movie_item.xpath('div[@class="aricle_item_info"]/div[@class="tip"]/span/text()').extract()
+            movie['tip'] = movie_item.xpath('normalize-space(div[@class="aricle_item_info"]//div[@class="tip"]/span/text())').extract()
             yield movie
             pass
         ##下面的代码应该是个分页的，但是目标网页没有分页的需要！！！！！
