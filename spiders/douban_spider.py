@@ -4,7 +4,7 @@ __date__='2018/5/11'
 
 import scrapy
 
-from tutorial.items import DoubanmoviesItem
+from tutorial.items import DoubanMoviesItem
 
 class DoubanSpider(scrapy.Spider):
     name = "douban"
@@ -14,7 +14,7 @@ class DoubanSpider(scrapy.Spider):
     def parse(self, response):
         currentpage_movie_items = response.xpath('//li[@class="list-item"]')
         for movie_item in currentpage_movie_items:
-            movie = DoubanmoviesItem()
+            movie = DoubanMoviesItem()
             movie['score'] = movie_item.xpath('@data-score').extract_first()
             movie['title'] = movie_item.xpath('@data-title').extract_first()
             movie['year'] = movie_item.xpath('@data-release').extract_first()

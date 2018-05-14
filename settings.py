@@ -20,7 +20,6 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-COOKIE = {'_tuicool_session':'BAh7C0kiD3Nlc3Npb25faWQGOgZFRkkiJWRmNTlmN2U4NzdkMDkwNjM3OTQ4NTJkMWZiZDhhMTAyBjsAVEkiEF9jc3JmX3Rva2VuBjsARkkiMVFJRlBKWWZka3hhemxucmVoSlpUU3pXb0xwY0ExNnpPT3BuS0h6ZDNFVzg9BjsARkkiDHVzZXJfaWQGOwBGaQMuiAJJIg51c2VyX2NpdHkGOwBGSSIL5YWo5Zu9BjsAVEkiE3VzZXJfY2l0eV9jb2RlBjsARkkiCGFsbAY7AFRJIg5yZXR1cm5fdG8GOwBGSSItaHR0cHM6Ly93d3cudHVpY29vbC5jb20vYXJ0aWNsZXMvWlpOVkJ6egY7AFQ%3D--7bc9163802b1d3bec3de78460bc87564940453bb'}
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -128,3 +127,7 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+LOG_LEVEL = 'INFO'
+FEED_EXPORT_ENCODING='utf-8'
+NEXT_PAGE_RULE_POOL=[{'domain':'','rule':''}]

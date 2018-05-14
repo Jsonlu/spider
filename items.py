@@ -8,7 +8,7 @@
 import scrapy
 
 
-class DoubanmoviesItem(scrapy.Item):
+class DoubanMoviesItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     score = scrapy.Field()
@@ -30,6 +30,7 @@ class TuiCoolItem(scrapy.Item):
     title = scrapy.Field()
     img = scrapy.Field()
     tip = scrapy.Field()
+    desc = scrapy.Field()
     pass
 
 
@@ -42,4 +43,18 @@ class EventItem(scrapy.Item):
     location = scrapy.Field()
     startDate = scrapy.Field()
     endDate = scrapy.Field()
+    pass
+
+
+class AliPayItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    number = scrapy.Field()
+    time = scrapy.Field()
+    info = scrapy.Field()
+    amountIncome = scrapy.Field()
+    amountOutlay = scrapy.Field()
+    balance = scrapy.Field()
+    detail = scrapy.Field()
+    fromAddr = scrapy.Field()
     pass

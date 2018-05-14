@@ -3,8 +3,6 @@ __author__='JsonLu'
 __date__='2018/5/11'
 
 import scrapy
-import random
-from scrapy.conf import settings
 from tutorial.items import TuiCoolItem
 
 class TuicoolSpider(scrapy.Spider):
@@ -12,7 +10,7 @@ class TuicoolSpider(scrapy.Spider):
     allowed_domains = ["tuicool.com"]
     start_urls = ['https://www.tuicool.com/a/']
 
-    cookie = settings['COOKIE']
+    cookie = {'_tuicool_session':'BAh7C0kiD3Nlc3Npb25faWQGOgZFRkkiJWRmNTlmN2U4NzdkMDkwNjM3OTQ4NTJkMWZiZDhhMTAyBjsAVEkiEF9jc3JmX3Rva2VuBjsARkkiMVFJRlBKWWZka3hhemxucmVoSlpUU3pXb0xwY0ExNnpPT3BuS0h6ZDNFVzg9BjsARkkiDHVzZXJfaWQGOwBGaQMuiAJJIg51c2VyX2NpdHkGOwBGSSIL5YWo5Zu9BjsAVEkiE3VzZXJfY2l0eV9jb2RlBjsARkkiCGFsbAY7AFRJIg5yZXR1cm5fdG8GOwBGSSItaHR0cHM6Ly93d3cudHVpY29vbC5jb20vYXJ0aWNsZXMvWlpOVkJ6egY7AFQ%3D--7bc9163802b1d3bec3de78460bc87564940453bb'}
 
     def start_requests(self):
         for url in self.start_urls:
