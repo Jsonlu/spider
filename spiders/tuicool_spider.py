@@ -5,6 +5,9 @@ __date__='2018/5/11'
 import scrapy
 from tutorial.items import TuiCoolItem
 
+'''
+需要推酷登录后的cookie
+'''
 class TuicoolSpider(scrapy.Spider):
     name = "tuicool"
     allowed_domains = ["tuicool.com"]

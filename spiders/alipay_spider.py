@@ -15,6 +15,9 @@ def go_remove_tag(value):
     else:
         return None
 
+'''
+需要支付宝登录后的cookie
+'''
 class AlipaySpider(scrapy.Spider):
     name = "alipay"
     allowed_domains = ["lab.alipay.com"]
