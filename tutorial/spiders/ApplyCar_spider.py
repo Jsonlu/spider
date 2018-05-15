@@ -32,8 +32,8 @@ class ApplyCarSpider(scrapy.Spider):
             yield item
 
         # 此处配置爬取所有  还是指定月份
-        # allMonth = response.xpath('//option/text()').extract()
-        allMonth = ['201804','201803']
+        allMonth = response.xpath('//option/text()').extract()
+        # allMonth = ['201804','201803']
         del allMonth[0]
 
         for m in allMonth:

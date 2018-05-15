@@ -27,8 +27,8 @@ class ApplyCarSpider(scrapy.Spider):
             yield item
 
         # 此处配置爬取所有还是指定
-        # allMonth = response.xpath('//option/text()').extract()
-        allMonth = ['201804','201803']
+        allMonth = response.xpath('//option/text()').extract()
+        # allMonth = ['201804','201803']
         del allMonth[0]
         for m in allMonth:
             body = {'issueNumber':str(m),'pageNo':'2'}

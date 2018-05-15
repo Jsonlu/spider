@@ -19,7 +19,7 @@ scrapy crawl paynews -o paynews.json
 #杭州/深圳/天津小汽车摇号信息爬取
 scrapy crawl applay -o applayCar.json
 #广州小汽车摇号信息爬取
-scrapy crawl applayGZ -o applayCar.json
+scrapy crawl applyGZ -o applayCar.json
 ```
 
 ### 配置代理地址池
