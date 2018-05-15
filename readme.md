@@ -16,8 +16,10 @@ scrapy crawl tuicool -o tuicool.json
 scrapy crawl alipay -o alipay.json
 #中国支付网信息爬取
 scrapy crawl paynews -o paynews.json
-#杭州小汽车摇号信息爬取
+#杭州/深圳/天津小汽车摇号信息爬取
 scrapy crawl applay -o applayCar.json
+#广州小汽车摇号信息爬取
+scrapy crawl applayGZ -o applayCar.json
 ```
 
 ### 配置代理地址池

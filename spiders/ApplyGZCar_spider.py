@@ -7,18 +7,14 @@ import re
 
 from tutorial.items import ApplyCarItem
 '''
-杭州/天津/深圳小汽车摇号数据
-天津，tjjttk
-杭州，hangzhou
-深圳，sztb
+广州小汽车摇号数据
 '''
 class ApplyCarSpider(scrapy.Spider):
 
-    name = "apply"
+    name = "applyGZ"
     allowed_domains = ["gov.cn"]
     start_urls = []
-    first_url = ''
-    city = 'hangzhou'
+    first_url = None
 
     def __init__(self):
         for issueNumber in range(201804,201805):
@@ -28,10 +24,10 @@ class ApplyCarSpider(scrapy.Spider):
 
     def start_requests(self):
         for issueNumber in self.start_urls:
-            yield scrapy.Request('http://apply.'+self.city+'.gov.cn/apply/app/status/norm/person?issueNumber='+issueNumber)
+            yield scrapy.Request('http://apply.gzjt.gov.cn/apply/norm/personQuery.html?issueNumber='+issueNumber)
 
     def parse(self, response):
-        list = response.xpath('//tr[@class="content_data" or @class="content_data1"]')
+        list = response.xpath('//tr[@style="color:red;font-size: 16px;font-weight: bolder;"]')
         month = response.xpath('//option[@selected="selected"]/text()').extract_first()
         for data in list:
             item = ApplyCarItem()
@@ -41,11 +37,12 @@ class ApplyCarSpider(scrapy.Spider):
             item['name'] = ll[1]
             yield item
             pass
-        pattern = re.compile(r'(?<=\(\')\d+(?=\')')
-        m = pattern.findall(response.body_as_unicode())
-        print('**************',m,response.url)
-        pageSize = int(m[1])
-        pageNow  = int(m[2])
+        print('**************',response.url)
+        pageSize = response.xpath('//span[@class="f_orange"]/text()').extract_first()
+        pageSize = int(pageSize)
+        pageNow  = response.xpath('//input[@id="num"]/@value').extract_first()
+        pageNow  = int(pageNow)
+
         if pageNow == 1:
             self.first_url = response.url
         while pageNow < pageSize:
