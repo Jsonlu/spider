@@ -16,19 +16,9 @@ class ApplyCarSpider(scrapy.Spider):
 
     name = "apply"
     allowed_domains = ["gov.cn"]
-    start_urls = []
     city = 'hzcb'
-    first_url = ''
+    start_urls = ['http://apply.'+city+'.gov.cn/apply/app/status/norm/person']
 
-    def __init__(self):
-        for issueNumber in range(201804,201805):
-            last = str(issueNumber)[-2:]
-            if int(last)<13 and int(last)>0:
-                self.start_urls.append(str(issueNumber))
-
-    def start_requests(self):
-        for issueNumber in self.start_urls:
-            yield scrapy.Request('http://apply.'+self.city+'.gov.cn/apply/app/status/norm/person?issueNumber='+issueNumber)
 
     def parse(self, response):
         list = response.xpath('//tr[@class="content_data" or @class="content_data1"]')
@@ -40,16 +30,36 @@ class ApplyCarSpider(scrapy.Spider):
             item['no'] = ll[0]
             item['name'] = ll[1]
             yield item
-            pass
+
+        # 此处配置爬取所有  还是指定月份
+        # allMonth = response.xpath('//option/text()').extract()
+        allMonth = ['201804','201803']
+        del allMonth[0]
+
+        for m in allMonth:
+            body = {'issueNumber':str(m),'pageNo':'2'}
+            print('*****************',body)
+            yield  scrapy.FormRequest(url=response.url,method="POST",formdata=body,callback=self.post)
+        pass
+
+
+    def post(self, response):
+        list = response.xpath('//tr[@class="content_data" or @class="content_data1"]')
+        month = response.xpath('//option[@selected="selected"]/text()').extract_first()
+        for data in list:
+            item = ApplyCarItem()
+            ll = data.xpath('td/text()').extract()
+            item['month'] = month
+            item['no'] = ll[0]
+            item['name'] = ll[1]
+            yield item
         pattern = re.compile(r'(?<=\(\')\d+(?=\')')
         m = pattern.findall(response.body_as_unicode())
-        print('**************',m,response.url)
         pageSize = int(m[1])
         pageNow  = int(m[2])
-        if pageNow == 1:
-            self.first_url = response.url
         while pageNow < pageSize:
             pageNow += 1
-            url = self.first_url+'&pageNo='+str(pageNow)
-            yield  scrapy.Request(url,self.parse)
-            pass
+            body = {'issueNumber':month,'pageNo':str(pageNow)}
+            print('*****************',body)
+            yield  scrapy.FormRequest(url=response.url,method="POST",formdata=body,callback=self.post)
+        pass
