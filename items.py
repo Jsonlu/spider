@@ -58,3 +58,21 @@ class AliPayItem(scrapy.Item):
     detail = scrapy.Field()
     fromAddr = scrapy.Field()
     pass
+
+# link title outline time pic_url
+class PaynewsItem(scrapy.Item):
+    link = scrapy.Field()
+    title = scrapy.Field()
+    outline = scrapy.Field()
+    time = scrapy.Field()
+    pic_url = scrapy.Field()
+    pass
+
+
+
+
+class ApplyCarItem(scrapy.Item):
+    no = scrapy.Field()
+    name = scrapy.Field()
+    month = scrapy.Field()
+    pass

@@ -5,7 +5,9 @@ __date__='2018/5/11'
 import scrapy
 
 from tutorial.items import EventItem
-
+'''
+豆瓣城市活动
+'''
 class EventSpider(scrapy.Spider):
     name = "event"
     allowed_domains = ["douban.com"]
@@ -23,7 +25,7 @@ class EventSpider(scrapy.Spider):
             movie['location'] = movie_item.xpath('div[@class="info"]/ul[@class="event-meta"]/li/@title').extract_first()
             yield movie
             pass
-            
+
         nextPage=response.xpath('//span[@class="next"]/a/@href').extract_first()
         if nextPage:
             url=response.urljoin(nextPage)

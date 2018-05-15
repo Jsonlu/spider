@@ -6,6 +6,7 @@ import scrapy
 from tutorial.items import TuiCoolItem
 
 '''
+推酷推荐
 需要推酷登录后的cookie
 '''
 class TuicoolSpider(scrapy.Spider):

@@ -5,11 +5,17 @@ __date__='2018/5/11'
 import scrapy
 
 from tutorial.items import DoubanMoviesItem
-
+'''
+豆瓣热门电影
+'''
 class DoubanSpider(scrapy.Spider):
     name = "douban"
     allowed_domains = ["douban.com"]
-    start_urls = ['https://movie.douban.com/cinema/nowplaying/hangzhou/']
+    start_urls = [
+    'https://movie.douban.com/cinema/nowplaying/hangzhou/',
+    'https://movie.douban.com/cinema/nowplaying/beijing/',
+    'https://movie.douban.com/cinema/nowplaying/shenzhen/'
+    ]
 
     def parse(self, response):
         currentpage_movie_items = response.xpath('//li[@class="list-item"]')
