@@ -9,7 +9,7 @@ from tutorial.items import ApplyCarItem
 '''
 杭州/天津/深圳小汽车摇号数据
 天津，tjjttk
-杭州，hangzhou
+杭州，hzcb
 深圳，sztb
 '''
 class ApplyCarSpider(scrapy.Spider):
@@ -17,8 +17,8 @@ class ApplyCarSpider(scrapy.Spider):
     name = "apply"
     allowed_domains = ["gov.cn"]
     start_urls = []
+    city = 'hzcb'
     first_url = ''
-    city = 'hangzhou'
 
     def __init__(self):
         for issueNumber in range(201804,201805):
